@@ -1,0 +1,43 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-image: url("../img/portada.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+}
+
+.capturedsZone{
+    margin: 0 auto;
+    background: radial-gradient(ellipse closest-side, red, rgba(255, 255, 255, .0));
+    text-align: center;
+}
+
+.captured{
+    width: 80px;
+    height: 80px;
+}
+
+table{
+    margin: 0 auto;
+    border-collapse:collapse; 
+    border: black 5px solid;
+}
+
+.blanco{
+    width: 100px;
+    height: 100px;
+    background-color:white;
+}
+.negro{
+    width: 100px;
+    height: 100px;
+    background-color:black;
+}
+
+.piece{
+    width: 100px;
+    height: 100px;
+}
