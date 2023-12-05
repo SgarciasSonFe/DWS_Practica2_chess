@@ -4,15 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear partida</title>
-    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../css/new_gameView.css">
 
 </head>
 <body>
     <header>
-        <h1>Formulario para crear partida</h1>
+        <h1>Game chess</h1> 
+        <nav>
+            <ul>
+                <a href="new_gameView.php">
+                    <li class="link"> Nueva partida </li>
+                </a>
+                <a href="gameListView.php">
+                    <li class="link"> Lista de partidas </li>
+                </a>
+            </ul>
+        </nav>
     </header>
+
+    <div id="message">
+        <h1>Formulario para crear partida</h1>
+    </div>
     
-    <div id="content">
+    <div id="content"> 
         <form action="boardView.php" method="POST">
             <div class="spacing">
                 <label for="player1">Nombre de jugador 1 (Piezas blancas): </label>

@@ -24,8 +24,8 @@
 
     function startHour($startDate)
     {
-        $startDate = explode(" ",$startDate);
-        return $startDate[1];
+        $startHour = explode(" ",$startDate);
+        return $startHour[1];
     }
 
     function getPlayerName($id,$playersData)
@@ -37,13 +37,28 @@
                 return $player->getName();
             }
         }
+        return "Player not found";
     }
     ?>
 </head>
 <body>
     <header>
+        <h1>Game chess</h1> 
+        <nav>
+            <ul>
+                <a href="new_gameView.php">
+                    <li class="link"> Nueva partida </li>
+                </a>
+                <a href="gameListView.php">
+                    <li class="link"> Lista de partidas </li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+    
+    <div id="message">
         <h1>Lista de partidas</h1> 
-    </header>  
+    </div>  
     <div id="content">
         <table>
             <tr id="index">
@@ -59,13 +74,12 @@
                 <td>Piezas negras</td>
             </tr>
             <?php
-            
-
             foreach($matchesData as $match)
             {
+                $id = $match->getID();
                 echo "<tr>"; 
-                echo "<td>".$match->getID()."</td>
-                        <td><a href=''>".$match->getTitle()."</a></td>
+                echo "<td>".$id."</td>
+                        <td><a href='boardView.php?matchId=$id'>".$match->getTitle()."</a></td>
                         <td>".startDate($match->getStartDate())."</td>
                         <td>".startHour($match->getStartDate())."</td>
                         <td>".$match->getState()."</td>

@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>Hola, ¡Ajedréz!</h1> 
+        <h1>Game chess</h1> 
     </header>  
     <div id="content">
         <nav>

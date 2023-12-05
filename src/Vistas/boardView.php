@@ -8,34 +8,83 @@
 </head>
 
 <body>
+    <header>
+        <h1>Game chess</h1> 
+        <nav>
+            <ul>
+                <a href="new_gameView.php">
+                    <li class="link"> Nueva partida </li>
+                </a>
+                <a href="gameListView.php">
+                    <li class="link"> Lista de partidas </li>
+                </a>
+            </ul>
+        </nav>
+    </header>
+
     <?php 
-        // Datos conseguidos de new_gameView.php.
-        $title = $_POST['name_title'];
-        $white = $_POST['name_player1'];
-        $black = $_POST['name_player2'];
         
-        echo "<title>".$title."</title>";
 
-        // Se insertan los datos de la partida en la base de datos.
-        require "../Negocio/matchesBL.php";
-        $matches = new MatchesBL();
-        $matches->insertMatchData($title,$white,$black);
+        // Se comprueva si va a pintar una partida nueva o ya existente.
+        if($_GET['matchId'] == 1){
+            $matchId = $_GET['matchId'];
+            echo "El id es ".$matchId;
 
-        // Array que define la posición de las piezas en el tablero.
-        $board = array(
-            array("RoB","KnB","BiB","QuB","KiB","BiB","KnB",""),
-            array("PaB","PaB","PaB","","","PaB","PaB","PaB"),
-            array("","","","","","","",""),
-            array("","","","","","","",""),
-            array("","","","","","","",""),
-            array("","","","","","","",""),
-            array("PaW","","PaW","PaW","PaW","PaW","PaW","PaW"),
-            array("RoW","KnW","BiW","QuW","KiW","","KnW","RoW"));
+            require "../Negocio/boardStatusBL.php";
+            $boardStatus = new BoardStatusBL();
+            DrawChessGame($boardStatus->obtainBoardStatus($matchId));
 
-        DrawChessGame($board);
+        } else {
+            // Datos conseguidos de new_gameView.php.
+            $title = $_POST['name_title'];
+            $white = $_POST['name_player1'];
+            $black = $_POST['name_player2'];
+        
+            echo "<title>".$title."</title>";
+
+            // Se insertan los datos de la partida en la base de datos.
+            // require "../Negocio/matchesBL.php";
+            // $matches = new MatchesBL();
+            // $matches->insertMatchData($title,$white,$black);
+        
+            // Se recibe este array que define la posición de las piezas en el tablero.
+            $board = array(
+                array("RoB","KnB","BiB","QuB","KiB","BiB","KnB","RoB"),
+                array("PaB","PaB","PaB","PaB","PaB","PaB","PaB","PaB"),
+                array("","","","","","","",""),
+                array("","","","","","","",""),
+                array("","","","","","","",""),
+                array("","","","","","","",""),
+                array("PaW","PaW","PaW","PaW","PaW","PaW","PaW","PaW"),
+                array("RoW","KnW","BiW","QuW","KiW","BiW","KnW","RoW"));
+
+// Se transforma en un solo string separados con , 
+            for($i=0;$i<8;$i++)
+            {
+                for($j=0; $j<8; $j++) 
+                {
+                    $lineBoard = $lineBoard.$board[$i][$j].",";
+                }
+            }
+            echo $lineBoard;
+// Se pasa a array normal:
+            $lineBoardSepared = explode(",",$lineBoard);
+            for ($i=0; $i < count($lineBoardSepared); $i++) { 
+                echo $lineBoardSepared[$i];
+            }
+            // DrawChessGame($board);
+
+            // SaveChessGameStatus($matchId,$board);
+        }
     ?>
 
     <?php
+        function SaveChessGameStatus($matchId,$board)
+        {
+            require "../Negocio/boardStatusBL.php";
+            $boardStatus = new BoardStatusBL();
+            $boardStatus->insertBoardStatus($matchId,$board);
+        }
         function DrawChessGame($board)
         {
             $nothing = "";
