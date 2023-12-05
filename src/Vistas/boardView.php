@@ -23,17 +23,19 @@
     </header>
 
     <?php 
-        
-
         // Se comprueva si va a pintar una partida nueva o ya existente.
-        if($_GET['matchId'] == 1){
+        if($_GET['matchId'] != false){
             $matchId = $_GET['matchId'];
             echo "El id es ".$matchId;
 
             require "../Negocio/boardStatusBL.php";
             $boardStatus = new BoardStatusBL();
-            DrawChessGame($boardStatus->obtainBoardStatus($matchId));
+            $boardStatusList = $boardStatus->obtainBoardStatus($matchId);
 
+            foreach($boardStatusList as $state)
+            {
+                DrawChessGame($state->getBoard());
+            }
         } else {
             // Datos conseguidos de new_gameView.php.
             $title = $_POST['name_title'];
@@ -43,49 +45,19 @@
             echo "<title>".$title."</title>";
 
             // Se insertan los datos de la partida en la base de datos.
-            // require "../Negocio/matchesBL.php";
-            // $matches = new MatchesBL();
-            // $matches->insertMatchData($title,$white,$black);
+            require "../Negocio/matchesBL.php";
+            $matches = new MatchesBL();
+            $matches->insertMatchData($title,$white,$black);
         
-            // Se recibe este array que define la posición de las piezas en el tablero.
-            $board = array(
-                array("RoB","KnB","BiB","QuB","KiB","BiB","KnB","RoB"),
-                array("PaB","PaB","PaB","PaB","PaB","PaB","PaB","PaB"),
-                array("","","","","","","",""),
-                array("","","","","","","",""),
-                array("","","","","","","",""),
-                array("","","","","","","",""),
-                array("PaW","PaW","PaW","PaW","PaW","PaW","PaW","PaW"),
-                array("RoW","KnW","BiW","QuW","KiW","BiW","KnW","RoW"));
+            // Se recibe el estado del tablero.
+            $board = "RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW";
 
-// Se transforma en un solo string separados con , 
-            for($i=0;$i<8;$i++)
-            {
-                for($j=0; $j<8; $j++) 
-                {
-                    $lineBoard = $lineBoard.$board[$i][$j].",";
-                }
-            }
-            echo $lineBoard;
-// Se pasa a array normal:
-            $lineBoardSepared = explode(",",$lineBoard);
-            for ($i=0; $i < count($lineBoardSepared); $i++) { 
-                echo $lineBoardSepared[$i];
-            }
-            // DrawChessGame($board);
-
-            // SaveChessGameStatus($matchId,$board);
+            DrawChessGame($board);
         }
     ?>
 
     <?php
-        function SaveChessGameStatus($matchId,$board)
-        {
-            require "../Negocio/boardStatusBL.php";
-            $boardStatus = new BoardStatusBL();
-            $boardStatus->insertBoardStatus($matchId,$board);
-        }
-        function DrawChessGame($board)
+        function DrawChessGame($boardLine)
         {
             $nothing = "";
             $blaRook = "<img class='piece' src='../../img/BLArook.png'>";
@@ -101,42 +73,46 @@
             $whiKing = "<img class='piece' src='../../img/WHIking.png'>";
             $whiPawn = "<img class='piece' src='../../img/WHIpawn.png'>";
 
+            $board = explode(",",$boardLine);
+            
             CapturedBlacks($board);
 
             echo "<table>";
-            for($i=0;$i<8;$i++)
+            $j = 0;
+            for($i=0;$i<9;$i++)
             {
                 echo "<tr>"; 
-                for($j=0; $j<8; $j++) 
+                while($j<($i*8)) 
                 {
-                    if($board[$i][$j] == "RoB") {
+                    if($board[$j] == "RoB") {
                         BoxColor($i,$j,$blaRook);
-                    } else if($board[$i][$j] == "KnB"){
+                    } else if($board[$j] == "KnB"){
                         BoxColor($i,$j,$blaKnight);
-                    } else if($board[$i][$j] == "BiB"){
+                    } else if($board[$j] == "BiB"){
                         BoxColor($i,$j,$blaBishop);
-                    } else if($board[$i][$j] == "QuB"){
+                    } else if($board[$j] == "QuB"){
                         BoxColor($i,$j,$blaQueen);
-                    } else if($board[$i][$j] == "KiB"){
+                    } else if($board[$j] == "KiB"){
                         BoxColor($i,$j,$blaKing);
-                    } else if($board[$i][$j] == "PaB"){
+                    } else if($board[$j] == "PaB"){
                         BoxColor($i,$j,$blaPawn); 
                     
-                    } else if($board[$i][$j] == "RoW") {
+                    } else if($board[$j] == "RoW") {
                         BoxColor($i,$j,$whiRook); 
-                    } else if($board[$i][$j] == "KnW"){
+                    } else if($board[$j] == "KnW"){
                         BoxColor($i,$j,$whiKnight); 
-                    } else if($board[$i][$j] == "BiW"){
+                    } else if($board[$j] == "BiW"){
                         BoxColor($i,$j,$whiBishop); 
-                    } else if($board[$i][$j] == "QuW"){
+                    } else if($board[$j] == "QuW"){
                         BoxColor($i,$j,$whiQueen); 
-                    } else if($board[$i][$j] == "KiW"){
+                    } else if($board[$j] == "KiW"){
                         BoxColor($i,$j,$whiKing); 
-                    } else if($board[$i][$j] == "PaW"){
+                    } else if($board[$j] == "PaW"){
                         BoxColor($i,$j,$whiPawn); 
                     } else {
                         BoxColor($i,$j,$nothing);
                     }
+                    $j++;
                 }
                 echo "</tr>";
             }
@@ -145,23 +121,23 @@
             CapturedWhites($board);
         }
 
-        function BoxColor($i,$j,$pieza)
+        function BoxColor($i,$j,$piece)
         {
             if($i % 2) 
             {
                 if($j % 2) 
                 {
-                    echo "<td><div class='blanco'>".$pieza."</div></td>";
+                    echo "<td><div class='blanco'>".$piece."</div></td>";
                 } else {
-                    echo "<td><div class='negro'>".$pieza."</div></td>";
+                    echo "<td><div class='negro'>".$piece."</div></td>";
                 }
             } else if(($i % 2)-1) 
             {
                 if($j % 2) 
                 {
-                    echo "<td><div class='negro'>".$pieza."</div></td>";
+                    echo "<td><div class='negro'>".$piece."</div></td>";
                 } else {
-                    echo "<td><div class='blanco'>".$pieza."</div></td>";
+                    echo "<td><div class='blanco'>".$piece."</div></td>";
                 }
             }
         }
@@ -173,21 +149,24 @@
             $biw = 0;
             $quw = 0;
             $paw = 0;
-            for($i=0;$i<8;$i++)
+
+            $j = 0;
+            for($i=0;$i<9;$i++)
             {
-                for($j=0; $j<8; $j++) 
+                while($j<($i*8)) 
                 {
-                    if($board[$i][$j] == "RoW") {
+                    if($board[$j] == "RoW") {
                         $row++;
-                    } else if($board[$i][$j] == "KnW"){
+                    } else if($board[$j] == "KnW"){
                         $knw++;
-                    } else if($board[$i][$j] == "BiW"){
+                    } else if($board[$j] == "BiW"){
                         $biw++;
-                    } else if($board[$i][$j] == "QuW"){
+                    } else if($board[$j] == "QuW"){
                         $quw++;
-                    } else if($board[$i][$j] == "PaW"){
+                    } else if($board[$j] == "PaW"){
                         $paw++;
                     }
+                    $j++;
                 }
             }
             echo "<div class='capturedsZone'>";
@@ -221,21 +200,24 @@
             $bib = 0;
             $qub = 0;
             $pab = 0;
-            for($i=0;$i<8;$i++)
+            
+            $j = 0;
+            for($i=0;$i<9;$i++)
             {
-                for($j=0; $j<8; $j++) 
+                while($j<($i*8)) 
                 {
-                    if($board[$i][$j] == "RoB") {
+                    if($board[$j] == "RoB") {
                         $rob++;
-                    } else if($board[$i][$j] == "KnB"){
+                    } else if($board[$j] == "KnB"){
                         $knb++;
-                    } else if($board[$i][$j] == "BiB"){
+                    } else if($board[$j] == "BiB"){
                         $bib++;
-                    } else if($board[$i][$j] == "QuB"){
+                    } else if($board[$j] == "QuB"){
                         $qub++;
-                    } else if($board[$i][$j] == "PaB"){
+                    } else if($board[$j] == "PaB"){
                         $pab++;
                     }
+                    $j++;
                 }
             }
             echo "<div class='capturedsZone'>";
