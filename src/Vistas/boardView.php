@@ -37,10 +37,23 @@
             $boardStatus = new BoardStatusBL();
             $boardStatusList = $boardStatus->obtainBoardStatus($matchId);
 
-            foreach($boardStatusList as $state)
+            function MatchState($matchPosition,$boardStatusList)
             {
-                DrawChessGame($state->getBoard());
+                foreach($boardStatusList as $state)
+                {
+                    if($state->getID() == $matchPosition)
+                    {
+                        DrawChessGame($state->getBoard());
+                    }
+                }
             }
+
+            $matchPosition = 1;
+            echo "<button onclick='".$matchPosition++."; ".MatchState($matchPosition,$boardStatusList)."'>Pasar</button>";
+
+            
+            
+            
         } else {
             // Datos conseguidos de new_gameView.php.
             $title = $_POST['name_title'];
@@ -58,7 +71,7 @@
             require("../Negocio/playersBL.php");
             $playersBL = new PlayersBL();
             $playersData = $playersBL->obtainPlayerData();
-            DrawMatchInfo($title,getPlayerName($white,$playersData),getPlayerName($black,$playersData));
+            DrawMatchInfo($title,GetPlayerName($white,$playersData),GetPlayerName($black,$playersData));
 
             // Se recibe el estado del tablero.
             $board = "RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW";
@@ -68,7 +81,7 @@
     ?>
 
     <?php
-        function getPlayerName($id,$playersData)
+        function GetPlayerName($id,$playersData)
         {
             foreach($playersData as $player)
             {

@@ -8,7 +8,7 @@ class BoardStatusBL
     private $_ID;
     private $_Board;
 
-    function __construct()
+    function __construct() 
     {
     }
 
