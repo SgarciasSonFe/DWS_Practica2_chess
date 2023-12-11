@@ -15,7 +15,6 @@ header{
     position:absolute; 
     top: 20px;
     left: 30px;
-    color: white;
 }
 .link{
     list-style:none;
@@ -28,8 +27,9 @@ header{
 }
 a{
     text-decoration: none;
+    color: white;
 }
-a :hover{
+ul a :hover{
     background-color: rgb(223, 60, 60);
 }
 

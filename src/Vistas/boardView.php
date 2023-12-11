@@ -9,7 +9,7 @@
 
 <body>
     <header>
-        <h1>Game chess</h1> 
+        <a href="index.php"><h1>Game chess</h1></a>
         <nav>
             <ul>
                 <a href="new_gameView.php">
@@ -26,7 +26,12 @@
         // Se comprueva si va a pintar una partida nueva o ya existente.
         if($_GET['matchId'] != false){
             $matchId = $_GET['matchId'];
-            echo "El id es ".$matchId;
+            $title = $_GET['title'];
+            $whiteName = $_GET['whiteName'];
+            $blackName = $_GET['blackName'];
+            echo "<title>".$title." repetición</title>";
+
+            DrawMatchInfo($title,$whiteName,$blackName);
 
             require "../Negocio/boardStatusBL.php";
             $boardStatus = new BoardStatusBL();
@@ -39,8 +44,8 @@
         } else {
             // Datos conseguidos de new_gameView.php.
             $title = $_POST['name_title'];
-            $white = $_POST['name_player1'];
-            $black = $_POST['name_player2'];
+            $white = $_POST['id_player1'];
+            $black = $_POST['id_player2'];
         
             echo "<title>".$title."</title>";
 
@@ -49,6 +54,12 @@
             $matches = new MatchesBL();
             $matches->insertMatchData($title,$white,$black);
         
+            // Se pintan los datos generales de la partida.
+            require("../Negocio/playersBL.php");
+            $playersBL = new PlayersBL();
+            $playersData = $playersBL->obtainPlayerData();
+            DrawMatchInfo($title,getPlayerName($white,$playersData),getPlayerName($black,$playersData));
+
             // Se recibe el estado del tablero.
             $board = "RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW";
 
@@ -57,6 +68,23 @@
     ?>
 
     <?php
+        function getPlayerName($id,$playersData)
+        {
+            foreach($playersData as $player)
+            {
+                if($player->getID() == $id)
+                {
+                    return $player->getName();
+                }
+            }
+            return "Player not found";
+        }
+
+        function DrawMatchInfo($title,$white,$black)
+        {
+            echo "<div id='info'><h1>".$title."</h1><p>".$white." VS ".$black."</p></div>";
+        }
+
         function DrawChessGame($boardLine)
         {
             $nothing = "";

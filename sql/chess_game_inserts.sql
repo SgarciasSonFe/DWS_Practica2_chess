@@ -5,13 +5,21 @@ select * from T_Matches;
 insert into T_Board_Status (IDGame,board) values((select ID from T_Matches where ID = 1),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
 ((select ID from T_Matches where ID = 2),"RoB,KnB,BiB,X,KiB,X,KnB,RoB,PaB,PaB,X,PaB,X,X,X,PaB,X,X,PaB,X,X,X,X,X,QuB,X,X,X,PaW,X,X,X,X,X,KnW,X,X,X,X,X,RoW,X,X,X,X,X,X,X,X,PaW,PaW,X,PaW,X,PaW,PaW,X,X,BiW,QuW,KiW,BiW,KnW,RoW");
 
+insert into T_Board_Status (IDGame,board) values
+((select ID from T_Matches where ID = 1),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
+((select ID from T_Matches where ID = 1),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,xxx,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
+((select ID from T_Matches where ID = 1),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,xxx,PaB,PaB,PaB,PaB,PaB,PaB,PaB,xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,PaB,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
+((select ID from T_Matches where ID = 1),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,xxx,PaB,PaB,PaB,PaB,PaB,PaB,PaB,xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,PaB,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
+((select ID from T_Matches where ID = 1),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,xxx,PaB,PaB,PaB,PaB,PaB,PaB,PaB,xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,xxx,PaB,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW");
+
+
 /* 
 "RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,
- PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,
- X,X,X,X,X,X,X,X,
- X,X,X,X,X,X,X,X,
- X,X,X,X,X,X,X,X,
- X,X,X,X,X,X,X,X,
+ xxx,PaB,PaB,PaB,PaB,PaB,PaB,PaB,
+ xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,
+ xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,
+ xxx,PaB,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,
+ Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,Xxx,
  PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,
  RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"
 */

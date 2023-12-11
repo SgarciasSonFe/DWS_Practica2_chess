@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>Game chess</h1> 
+        <a href="index.php"><h1>Game chess</h1></a> 
         <nav>
             <ul>
                 <a href="new_gameView.php">
@@ -30,7 +30,7 @@
         <form action="boardView.php" method="POST">
             <div class="spacing">
                 <label for="player1">Nombre de jugador 1 (Piezas blancas): </label>
-                <select name="name_player1" id="player1">
+                <select name="id_player1" id="player1">
                     <?php
                     require "../Negocio/playersBL.php";
                     $players = new PlayersBL();
@@ -45,7 +45,7 @@
         
             <div class="spacing">
                 <label for="player2">Nombre de jugador 2 (Piezas negras): </label>
-                <select name="name_player2" id="player2">
+                <select name="id_player2" id="player2">
                     <?php
                     foreach ($rs as $player)
                     {
