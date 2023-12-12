@@ -9,7 +9,7 @@
 
 <body>
     <header>
-        <a href="index.php"><h1>Game chess</h1></a>
+        <a href="index.php" class="chess_game"><h1>Chess game</h1></a>
         <nav>
             <ul>
                 <a href="new_gameView.php">
@@ -29,6 +29,7 @@
             $title = $_GET['title'];
             $whiteName = $_GET['whiteName'];
             $blackName = $_GET['blackName'];
+            $matchStatus = $_GET['btn'];
             echo "<title>".$title." repetición</title>";
 
             DrawMatchInfo($title,$whiteName,$blackName);
@@ -37,23 +38,60 @@
             $boardStatus = new BoardStatusBL();
             $boardStatusList = $boardStatus->obtainBoardStatus($matchId);
 
-            function MatchState($matchPosition,$boardStatusList)
+            $match = array();
+            foreach($boardStatusList as $state)
             {
-                foreach($boardStatusList as $state)
-                {
-                    if($state->getID() == $matchPosition)
-                    {
-                        DrawChessGame($state->getBoard());
-                    }
-                }
+                array_push($match,$state->getBoard());
             }
 
-            $matchPosition = 1;
-            echo "<button onclick='".$matchPosition++."; ".MatchState($matchPosition,$boardStatusList)."'>Pasar</button>";
+            if($matchStatus != 0){
+                $matchStatus = $_GET['matchStatus'];
+                $btn = $_GET['btn'];
+                switch ($btn) {
+                    case 1:
+                        $matchStatus = 0;
+                        DrawChessGame($match[$matchStatus]);
+                        break;
+                    case 2:
+                        if(($matchStatus - 1) < 0)
+                        {
+                            DrawChessGame($match[$matchStatus]);
+                        } else {
+                            $matchStatus--;
+                            DrawChessGame($match[$matchStatus]);
+                        }
+                        break;
+                    case 3:
+                        if(($matchStatus + 1) > (count($match) -1))
+                        {
+                            DrawChessGame($match[$matchStatus]);
+                        } else {
+                            $matchStatus++;
+                            DrawChessGame($match[$matchStatus]);
+                        }
+                        break;
+                    case 4:
+                        $matchStatus = count($match) -1;
+                        DrawChessGame($match[$matchStatus]);
+                        break;
+                    default:
+                        DrawChessGame($match[0]);
+                        break;
+                }
+            } else if($match[0] != false){
+                $matchStatus = 0;
+                DrawChessGame($match[0]);
+            } else {
+                $matchStatus = 0;
+                echo "<p id='error'>No hay datos registrados de la partida.</p>";
+            }
+            echo "<div id='button_pannel'>
+                  <a href='boardView.php?matchId=$matchId&title=$title&whiteName=$whiteName&blackName=$blackName&matchStatus=$matchStatus&btn=1'><div class='button'><img class='btn_img' src='../../img/icons/inicio.png'></div></a>";
+            echo "<a href='boardView.php?matchId=$matchId&title=$title&whiteName=$whiteName&blackName=$blackName&matchStatus=$matchStatus&btn=2'><div class='button'><img class='btn_img' src='../../img/icons/retroceder.png'></div></a>";
+            echo "<a href='boardView.php?matchId=$matchId&title=$title&whiteName=$whiteName&blackName=$blackName&matchStatus=$matchStatus&btn=3'><div class='button'><img class='btn_img' src='../../img/icons/avanzar.png'></div></a>";
+            echo "<a href='boardView.php?matchId=$matchId&title=$title&whiteName=$whiteName&blackName=$blackName&matchStatus=$matchStatus&btn=4'><div class='button'><img class='btn_img' src='../../img/icons/fin.png'></div></a>
+                </div>";
 
-            
-            
-            
         } else {
             // Datos conseguidos de new_gameView.php.
             $title = $_POST['name_title'];

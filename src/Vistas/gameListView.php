@@ -43,7 +43,7 @@
 </head>
 <body>
     <header>
-        <a href="index.php"><h1>Game chess</h1></a>
+        <a href="index.php" class="chess_game"><h1>Chess game</h1></a>
         <nav>
             <ul>
                 <a href="new_gameView.php">
@@ -82,7 +82,7 @@
                 $blackName = getPlayerName($match->getBlack(),$playersData);
                 echo "<tr>"; 
                 echo "<td>".$id."</td>
-                        <td><a href='boardView.php?matchId=$id&title=$title&whiteName=$whiteName&blackName=$blackName'>".$title."</a></td>
+                        <td class='title'><a href='boardView.php?matchId=$id&title=$title&whiteName=$whiteName&blackName=$blackName'><b>".$title."</b></a></td>
                         <td>".startDate($match->getStartDate())."</td>
                         <td>".startHour($match->getStartDate())."</td>
                         <td>".$match->getState()."</td>

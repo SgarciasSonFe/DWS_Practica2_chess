@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <h1>Game chess</h1> 
+        <h1>Chess game</h1> 
     </header>  
     <div id="content">
         <nav>

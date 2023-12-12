@@ -40,12 +40,6 @@ class BoardStatusBL
         }
         return $boardStatusList;
     }
-
-    function insertBoardStatus($idMatch,$board)
-    {
-        $boardStatusDAL = new BoardStatusDAL();
-        $boardStatusDAL->insertBoardStatus($idMatch,$board);
-    }
 }
 
 ?>

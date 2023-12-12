@@ -16,8 +16,11 @@ header{
     top: 20px;
     left: 30px;
 }
-h1{
+.chess_game{
     color: white;
+}
+.chess_game:hover{
+    color: red;
 }
 .link{
     list-style:none;
@@ -67,9 +70,9 @@ td{
     padding: 5px;
 }
 
-a{
+.title a{
     color: black;
 }
-a:hover{
+.title a:hover{
     color: blue;
 }

@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <a href="index.php"><h1>Game chess</h1></a> 
+        <a href="index.php" class="chess_game"><h1>Chess game</h1></a> 
         <nav>
             <ul>
                 <a href="new_gameView.php">
@@ -57,7 +57,7 @@
             
             <div class="spacing">
                 <label for="title">Titulo de la partida: </label>
-                <input id="title" name="name_title" type="select">
+                <input id="title" name="name_title" type="text">
             </div>
             <input type="submit" value="Aceptar" class="button">
         </form>

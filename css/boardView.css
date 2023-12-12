@@ -14,6 +14,9 @@ header{
     top: 20px;
     left: 30px;
 }
+.chess_game:hover{
+    color: red;
+}
 .link{
     list-style:none;
     background-color: rgb(104, 85, 85);
@@ -56,17 +59,41 @@ table{
 }
 
 .blanco{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     background-color:white;
 }
 .negro{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     background-color:black;
 }
 
 .piece{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
+}
+
+#button_pannel{
+    position:absolute; 
+    left: 30px;
+    bottom: 40px;
+    padding: 5px;
+    background: radial-gradient(ellipse closest-side, white, rgba(255, 255, 255, .0));
+}
+.button{
+    float: left;
+    padding: 20px;
+}
+.button:hover{
+    background: radial-gradient(ellipse closest-side, red, rgba(255, 255, 255, .0));
+}
+.btn_img{
+    width: 60px;
+}
+
+#error{
+    background-color: white;
+    color: red;
+    margin: auto;
 }

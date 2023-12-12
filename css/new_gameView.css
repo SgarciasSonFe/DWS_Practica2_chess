@@ -16,6 +16,9 @@ header{
     top: 20px;
     left: 30px;
 }
+.chess_game:hover{
+    color: red;
+}
 .link{
     list-style:none;
     background-color: rgb(104, 85, 85);
