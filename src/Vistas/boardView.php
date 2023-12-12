@@ -43,7 +43,9 @@
             {
                 array_push($match,$state->getBoard());
             }
-
+            
+            // Con este if se comprueba la fase de la partida en la que el usuario
+            // se encuentra y hacia la fase a la que va.
             if($matchStatus != 0){
                 $matchStatus = $_GET['matchStatus'];
                 $btn = $_GET['btn'];
@@ -154,7 +156,7 @@
 
             $board = explode(",",$boardLine);
             
-            CapturedBlacks($board);
+            CapturedWhites($board);
 
             echo "<table>";
             $j = 0;
@@ -197,7 +199,7 @@
             }
             echo "</table>";
 
-            CapturedWhites($board);
+            CapturedBlacks($board);
         }
 
         function BoxColor($i,$j,$piece)

@@ -9,14 +9,14 @@ insert into T_Board_Status (IDGame,board) values
 ((select ID from T_Matches where ID = 1),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,X,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW");
 
 insert into T_Board_Status (IDGame,board) values
-((select ID from T_Matches where ID = 2),"RoB,KnB,X,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
+((select ID from T_Matches where ID = 2),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
 ((select ID from T_Matches where ID = 2),"RoB,KnB,X,QuB,KiB,BiB,KnB,RoB,X,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,X,PaW,PaW,X,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
 ((select ID from T_Matches where ID = 2),"RoB,KnB,X,QuB,KiB,BiB,KnB,RoB,X,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,X,PaW,PaW,X,PaW,PaW,RoW,KnW,BiW,QuW,KiW,X,KnW,RoW"),
 ((select ID from T_Matches where ID = 2),"X,KnB,X,QuB,KiB,BiB,KnB,RoB,X,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,X,PaW,PaW,X,PaW,PaW,RoW,KnW,BiW,QuW,KiW,X,KnW,RoW"),
 ((select ID from T_Matches where ID = 2),"X,KnB,X,QuB,KiB,BiB,KnB,RoB,X,PaB,PaB,PaB,PaB,X,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,X,PaW,PaW,X,PaW,PaW,RoW,KnW,BiW,QuW,KiW,X,KnW,RoW");
 
 insert into T_Board_Status (IDGame,board) values
-((select ID from T_Matches where ID = 3),"RoB,KnB,X,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
+((select ID from T_Matches where ID = 3),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
 ((select ID from T_Matches where ID = 3),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,X,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
 ((select ID from T_Matches where ID = 3),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,X,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,PaB,X,X,X,X,X,X,X,PaW,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,X,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW"),
 ((select ID from T_Matches where ID = 3),"RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,X,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,PaB,X,X,X,X,X,X,X,PaW,X,X,X,X,X,X,X,X,KnW,X,X,PaW,PaW,PaW,PaW,X,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,X,RoW"),
