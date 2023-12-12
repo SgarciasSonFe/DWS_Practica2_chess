@@ -1,4 +1,3 @@
-drop schema if exists chess_game;
 CREATE SCHEMA chess_game;
 
 USE chess_game;
