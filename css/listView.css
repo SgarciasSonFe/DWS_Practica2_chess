@@ -15,11 +15,12 @@ header{
     position:absolute; 
     top: 20px;
     left: 30px;
+    width: 200px;
 }
-.chess_game{
+.menu{
     color: white;
 }
-.chess_game:hover{
+.menu:hover{
     color: red;
 }
 .link{
@@ -41,7 +42,8 @@ ul a :hover{
 #message{
     color: white;
     background-color: black;
-    padding: 30px 0 40px 0;
+    padding: 50px 0 30px 0;
+    font-size: 22px;
 }
 
 #content{
@@ -54,7 +56,7 @@ table{
     border-collapse:collapse; 
 }
 #index{
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
 }
 

@@ -9,12 +9,9 @@
 </head>
 <body>
     <header>
-        <a href="index.php" class="chess_game"><h1>Chess game</h1></a> 
+        <a href="index.php" class="menu"><h1>Menú principal</h1></a> 
         <nav>
             <ul>
-                <a href="new_gameView.php">
-                    <li class="link"> Nueva partida </li>
-                </a>
                 <a href="gameListView.php">
                     <li class="link"> Lista de partidas </li>
                 </a>

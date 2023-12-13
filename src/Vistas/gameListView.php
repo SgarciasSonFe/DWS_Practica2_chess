@@ -16,16 +16,24 @@
     $playersBL = new PlayersBL();
     $playersData = $playersBL->obtainPlayerData();
 
-    function startDate($startDate)
+    function obtainDate($date)
     {
-        $startDate = explode(" ",$startDate);
-        return $startDate[0];
+        if($date != false)
+        {
+            $oDate = explode(" ",$date);
+            return $oDate[0];
+        }
+        return "";
     }
 
-    function startHour($startDate)
+    function obtainHour($date)
     {
-        $startHour = explode(" ",$startDate);
-        return $startHour[1];
+        if($date != false)
+        {
+            $oHour = explode(" ",$date);
+            return $oHour[1];
+        }
+        return "";
     }
 
     function getPlayerName($id,$playersData)
@@ -43,14 +51,11 @@
 </head>
 <body>
     <header>
-        <a href="index.php" class="chess_game"><h1>Chess game</h1></a>
+        <a href="index.php" class="menu"><h1>Menú principal</h1></a>
         <nav>
             <ul>
                 <a href="new_gameView.php">
                     <li class="link"> Nueva partida </li>
-                </a>
-                <a href="gameListView.php">
-                    <li class="link"> Lista de partidas </li>
                 </a>
             </ul>
         </nav>
@@ -83,12 +88,12 @@
                 echo "<tr>"; 
                 echo "<td>".$id."</td>
                         <td class='title'><a href='boardView.php?matchId=$id&title=$title&whiteName=$whiteName&blackName=$blackName'><b>".$title."</b></a></td>
-                        <td>".startDate($match->getStartDate())."</td>
-                        <td>".startHour($match->getStartDate())."</td>
+                        <td>".obtainDate($match->getStartDate())."</td>
+                        <td>".obtainHour($match->getStartDate())."</td>
                         <td>".$match->getState()."</td>
                         <td>".$match->getWinner()."</td>
-                        <td>".$match->getEndDate()."</td>
-                        <td>".$match->getEndDate()."</td>
+                        <td>".obtainDate($match->getEndDate())."</td>
+                        <td>".obtainHour($match->getEndDate())."</td>
                         <td>".$whiteName."</td>
                         <td>".$blackName."</td>";
                 echo "</tr>";

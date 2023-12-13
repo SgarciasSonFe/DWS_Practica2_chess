@@ -9,7 +9,7 @@
 
 <body>
     <header>
-        <a href="index.php" class="chess_game"><h1>Chess game</h1></a>
+        <a href="index.php" class="chess_game"><h1>Menú principal</h1></a>
         <nav>
             <ul>
                 <a href="new_gameView.php">
@@ -32,7 +32,7 @@
             $matchStatus = $_GET['btn'];
             echo "<title>".$title." repetición</title>";
 
-            DrawMatchInfo($title,$whiteName,$blackName);
+            drawMatchInfo($title,$whiteName,$blackName);
 
             require "../Negocio/boardStatusBL.php";
             $boardStatus = new BoardStatusBL();
@@ -52,37 +52,37 @@
                 switch ($btn) {
                     case 1:
                         $matchStatus = 0;
-                        DrawChessGame($match[$matchStatus]);
+                        drawChessGame($match[$matchStatus]);
                         break;
                     case 2:
                         if(($matchStatus - 1) < 0)
                         {
-                            DrawChessGame($match[$matchStatus]);
+                            drawChessGame($match[$matchStatus]);
                         } else {
                             $matchStatus--;
-                            DrawChessGame($match[$matchStatus]);
+                            drawChessGame($match[$matchStatus]);
                         }
                         break;
                     case 3:
                         if(($matchStatus + 1) > (count($match) -1))
                         {
-                            DrawChessGame($match[$matchStatus]);
+                            drawChessGame($match[$matchStatus]);
                         } else {
                             $matchStatus++;
-                            DrawChessGame($match[$matchStatus]);
+                            drawChessGame($match[$matchStatus]);
                         }
                         break;
                     case 4:
                         $matchStatus = count($match) -1;
-                        DrawChessGame($match[$matchStatus]);
+                        drawChessGame($match[$matchStatus]);
                         break;
                     default:
-                        DrawChessGame($match[0]);
+                        drawChessGame($match[0]);
                         break;
                 }
             } else if($match[0] != false){
                 $matchStatus = 0;
-                DrawChessGame($match[0]);
+                drawChessGame($match[0]);
             } else {
                 $matchStatus = 0;
                 echo "<p id='error'>No hay datos registrados de la partida.</p>";
@@ -111,17 +111,17 @@
             require("../Negocio/playersBL.php");
             $playersBL = new PlayersBL();
             $playersData = $playersBL->obtainPlayerData();
-            DrawMatchInfo($title,GetPlayerName($white,$playersData),GetPlayerName($black,$playersData));
+            drawMatchInfo($title,getPlayerName($white,$playersData),getPlayerName($black,$playersData));
 
             // Se recibe el estado del tablero.
             $board = "RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW";
 
-            DrawChessGame($board);
+            drawChessGame($board);
         }
     ?>
 
     <?php
-        function GetPlayerName($id,$playersData)
+        function getPlayerName($id,$playersData)
         {
             foreach($playersData as $player)
             {
@@ -133,12 +133,12 @@
             return "Player not found";
         }
 
-        function DrawMatchInfo($title,$white,$black)
+        function drawMatchInfo($title,$white,$black)
         {
             echo "<div id='info'><h1>".$title."</h1><p>".$white." VS ".$black."</p></div>";
         }
 
-        function DrawChessGame($boardLine)
+        function drawChessGame($boardLine)
         {
             $nothing = "";
             $blaRook = "<img class='piece' src='../../img/BLArook.png'>";
@@ -156,7 +156,7 @@
 
             $board = explode(",",$boardLine);
             
-            CapturedWhites($board);
+            capturedWhites($board);
 
             echo "<table>";
             $j = 0;
@@ -166,32 +166,32 @@
                 while($j<($i*8)) 
                 {
                     if($board[$j] == "RoB") {
-                        BoxColor($i,$j,$blaRook);
+                        boxColor($i,$j,$blaRook);
                     } else if($board[$j] == "KnB"){
-                        BoxColor($i,$j,$blaKnight);
+                        boxColor($i,$j,$blaKnight);
                     } else if($board[$j] == "BiB"){
-                        BoxColor($i,$j,$blaBishop);
+                        boxColor($i,$j,$blaBishop);
                     } else if($board[$j] == "QuB"){
-                        BoxColor($i,$j,$blaQueen);
+                        boxColor($i,$j,$blaQueen);
                     } else if($board[$j] == "KiB"){
-                        BoxColor($i,$j,$blaKing);
+                        boxColor($i,$j,$blaKing);
                     } else if($board[$j] == "PaB"){
-                        BoxColor($i,$j,$blaPawn); 
+                        boxColor($i,$j,$blaPawn); 
                     
                     } else if($board[$j] == "RoW") {
-                        BoxColor($i,$j,$whiRook); 
+                        boxColor($i,$j,$whiRook); 
                     } else if($board[$j] == "KnW"){
-                        BoxColor($i,$j,$whiKnight); 
+                        boxColor($i,$j,$whiKnight); 
                     } else if($board[$j] == "BiW"){
-                        BoxColor($i,$j,$whiBishop); 
+                        boxColor($i,$j,$whiBishop); 
                     } else if($board[$j] == "QuW"){
-                        BoxColor($i,$j,$whiQueen); 
+                        boxColor($i,$j,$whiQueen); 
                     } else if($board[$j] == "KiW"){
-                        BoxColor($i,$j,$whiKing); 
+                        boxColor($i,$j,$whiKing); 
                     } else if($board[$j] == "PaW"){
-                        BoxColor($i,$j,$whiPawn); 
+                        boxColor($i,$j,$whiPawn); 
                     } else {
-                        BoxColor($i,$j,$nothing);
+                        boxColor($i,$j,$nothing);
                     }
                     $j++;
                 }
@@ -199,10 +199,10 @@
             }
             echo "</table>";
 
-            CapturedBlacks($board);
+            capturedBlacks($board);
         }
 
-        function BoxColor($i,$j,$piece)
+        function boxColor($i,$j,$piece)
         {
             if($i % 2) 
             {
@@ -223,7 +223,7 @@
             }
         }
 
-        function CapturedWhites($board)
+        function capturedWhites($board)
         {
             $row= 0;
             $knw = 0;
@@ -274,7 +274,7 @@
             echo "</div>";
         }
 
-        function CapturedBlacks($board)
+        function capturedBlacks($board)
         {
             $rob= 0;
             $knb = 0;
